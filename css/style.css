@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --bs-body-font-family:'Cabin', sans-serif
+}
+.anton-font{
+    font-family: 'Anton', sans-serif;
+}
+.text-blue{
+    color: rgba(27, 26, 106, 1);
+}
+
+.bg-danger{
+    background:rgba(27, 26, 106, 1)!important ;
+}
+.bg-primary{
+    background: rgba(0, 33, 71, 1)!important;
+}
+.head1{
+font-family: 'Rowdies', cursive;
+}
+.principal{
+    border-radius: 50%;
+    float:right;
+    height:auto;
+
+}
+.imge{
+    background-image:url(Images/2061514486_2023-06-14_01-12-55.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position:center;
+    height:450px;
+    width:auto;
+-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+ }
+
+.btn-primary{
+    background: rgba(27, 26, 106, 1)!important;
+}

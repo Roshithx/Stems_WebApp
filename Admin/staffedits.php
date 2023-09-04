@@ -1,0 +1,95 @@
+<?php
+$con=new mysqli("localhost","root","",'admin_db');
+if($con->connect_error)
+{
+    die("Connection failed");
+
+}
+session_start();
+$id=$_SESSION['id'];
+$q="select * from staff_tb where id=$id";
+$res=mysqli_query($con,$q);
+$row=mysqli_fetch_array($res);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Staff Registration</h1>
+    <div>
+    <form action="staffupdate.php?id=<?php echo $id;?>" method="post" enctype="multipart/form-data">
+    <label for="name">Name</label>
+    <input type="text" name="name" value="<?php echo $row['name'];?>">
+    </div>
+    <div>
+        <label for="department">Department</label>
+        <select name="department" id="">
+            <option value="">Select</option>
+            <option value="Computer science"
+               <?php
+                if($row['department']=='Computer science')
+                {
+                    echo "selected";
+                } 
+                ?>>Computer Science</option>
+            <option value="English"
+            <?php
+                if($row['department']=='English')
+                {
+                    echo "selected";
+                } 
+                ?>>English</option>
+            <option value="Commerce"
+            <?php
+                if($row['department']=='Commerce')
+                {
+                    echo "selected";
+                } 
+                ?>>Commerce</option>
+            <option value="Psychology"
+            <?php
+                if($row['department']=='Psychology')
+                {
+                    echo "selected";
+                } 
+                ?>>Psychology</option>
+            <option value="Malayalam"
+            <?php
+                if($row['department']=='Malayalam')
+                {
+                    echo "selected";
+                } 
+                ?>>Malayalam</option>
+        </select>
+    </div>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" value="<?php echo $row['username'];?>">
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="text" name="password" value="<?php echo $row['password'];?>">
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" value="<?php echo $row['email'];?>">
+    </div>
+    <div>
+        <label for="contact">Contact</label>
+        <input type="text" name="contact" value="<?php echo $row['contact'];?>">
+    </div>
+    <div>
+        <label for="image">Profile</label>
+        <img src="../Images/<?php echo $row['images']; ?>" height="100px" width="100px" alt="">
+        <input type="file" name="images" value="<?php echo $row['images'];?>">
+    </div>
+    <div>
+        <input type="submit" name="Register" value="Update">
+    </div>
+</form>
+</body>
+</html>

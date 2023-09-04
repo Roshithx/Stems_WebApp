@@ -1,0 +1,29 @@
+:root{
+    --bs-body-font-family: 'Poppins', sans-serif;
+}
+.anton-font{
+    font-family: 'Anton', sans-serif;
+}
+.text-blue{
+    color: rgba(27, 26, 106, 1);
+}
+
+.bg-danger{
+    background:rgba(27, 26, 106, 1)!important ;
+}
+.btn-primary{
+    background: rgba(27, 26, 106, 1)!important;
+}
+body{
+    background-color:ghostwhite
+}
+.form{
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 101;
+    padding: 25px;
+    border-radius: 12px;
+}
