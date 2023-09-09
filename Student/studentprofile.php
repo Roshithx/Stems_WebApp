@@ -19,6 +19,7 @@ $res=mysqli_query($con,$q);
                          <img src="../Images/<?php echo $row['images'];?>" height="100px" width="100px" alt="">
                          </div>
                            <label for="">Name:</label> <?php echo $row['name'];?><br>
+                           <label for="">Reg No:</label> <?php echo $row['Regno'];?><br>
                            <label for="">Department:</label><?php echo $row['department'];?><br>
                            <label for="">Course:</label><?php echo $row['course'];?><br>
                            <label for="">Username:</label><?php echo $row['username'];?><br>

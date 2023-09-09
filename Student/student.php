@@ -12,7 +12,7 @@ if(isset($_POST['Register']))
     $course=$_POST['course'];
     $username=$_POST['username'];
     $password=$_POST['password'];
-    $query="insert into student_tb(name,department,course,username,password)values('$name','$department','$course','$username','$password')";
+    $query="insert into student_tb(name,Regno,department,course,username,password)values('$name','$Regno','$department','$course','$username','$password')";
     $res=mysqli_query($con,$query);
     if($res==true)
     {

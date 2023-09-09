@@ -11,16 +11,17 @@ if(isset($_POST['Register']))
     $filepath=$_FILES['images']['tmp_name'];
     $id=$_GET['id'];
     $name=$_POST['name'];
+    $Regno=$_POST['Regno'];
     $department=$_POST['department'];
-    $course=$_POST['course'];
+    $course=$_POST['Course_name'];
     $username=$_POST['username'];
     $password=$_POST['password'];
     if($filename)
     {
-    $query="update student_tb set name='$name',department='$department',course='$course',username='$username',password='$password',images='$filename' where id=$id";
+    $query="update student_tb set name='$name',Regno='$Regno',department='$department',course='$course',username='$username',password='$password',images='$filename' where id=$id";
     }
     else{
-        $query="update student_tb set name='$name',department='$department',course='$course',username='$username',password='$password' where id=$id";
+        $query="update student_tb set name='$name',Regno='$Regno',department='$department',course='$course',username='$username',password='$password' where id=$id";
     }
     $res=mysqli_query($con,$query);
     if($res==true)

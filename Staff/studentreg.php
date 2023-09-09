@@ -8,6 +8,9 @@ $cod=mysqli_query($con,$e);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="../js3/jquery-3.6.1.js">
+     
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -28,8 +31,20 @@ $cod=mysqli_query($con,$e);
     </strong>
         </div>
         <div>
+            <label for="">Reg No</label>
+            <input type="text" name="Regno" id="">
+            <strong style="color:red">
+    <?php
+    if($gerr!=1)
+    {
+      echo $gerr;
+    }
+    ?>
+    </strong>
+        </div>
+        <div>
             <label for="department">Department</label>
-            <select name="department" id="">
+            <select name="department" id="dep">
             <option value="">Select Department</option>
          <?php
          while($r=mysqli_fetch_array($cos)){
@@ -48,16 +63,17 @@ $cod=mysqli_query($con,$e);
     ?>
     </strong>
         </div>
+        
         <div>
         <label for="Course">Course</label>
-        <select name="Course_name" id="">
+        <select name="Course_name" id="cou">
          <option value="">Select Course</option>   
          <?php
-         while($c=mysqli_fetch_array($cod)){
+        //  while($c=mysqli_fetch_array($cod)){
           ?>
-          <option value="<?php echo $c['id'];?>"><?php echo $c['Course_name'];?></option>
+          <!-- <option value="<?php echo $c['id'];?>"><?php echo $c['Course_name'];?></option> -->
           <?php
-         }
+        //  }
          ?>   
         </select>
         
@@ -105,3 +121,16 @@ $cod=mysqli_query($con,$e);
     </form>
 </body>
 </html>
+<script>
+      $('#dep').change(function(){
+        var id=$('#dep').val();
+        $.ajax({
+             type:'POST',
+             url:'courseselect.php',
+             data:{id:id},
+             success : function (data){
+              $('#cou').html(data);
+             }
+        });
+      });
+    </script>

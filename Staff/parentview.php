@@ -5,7 +5,7 @@ if($con->connect_error)
     die("Connection failed");
 
 }
-$q="select *,department_tb.Department_name as did from parent_tb inner join Course_tb on Course_tb.id=parent_tb.course inner join department_tb on department_tb.id=Course_tb.Department_name";
+$q="select *,department_tb.Department_name as did,parent_tb.id as pid from parent_tb inner join Course_tb on Course_tb.id=parent_tb.course inner join department_tb on department_tb.id=Course_tb.Department_name";
 
 $res=mysqli_query($con,$q);
 
@@ -46,8 +46,8 @@ $res=mysqli_query($con,$q);
                         <td> <?php echo $row['username'];?></td>
                         <td> <?php echo $row['password'];?></td>
                         <td> <?php echo $row['contact'];?></td>
-                        <td><a href="parentedit.php?id=<?php echo $row['id'];?>">EDIT</a></td>
-                        <td><a href="parentupdate.php?id=<?php echo $row['id'];?>">UPDATE</a></td>
+                        <td><a href="parentedit.php?id=<?php echo $row['pid'];?>">EDIT</a></td>
+
 
                     </tr>
                     <?php

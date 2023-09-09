@@ -25,92 +25,33 @@ $row=mysqli_fetch_array($res);
     <input type="text" name="name" value="<?php echo $row['name'];?>">
     </div>
     <div>
-        <label for="department">Department</label>
-        <select name="department" id="">
-            <option value="">Select</option>
-            <option value="Computer science"
-               <?php
-                if($row['department']=='Computer science')
-                {
-                    echo "selected";
-                } 
-                ?>>Computer Science</option>
-            <option value="English"
-            <?php
-                if($row['department']=='English')
-                {
-                    echo "selected";
-                } 
-                ?>>English</option>
-            <option value="Commerce"
-            <?php
-                if($row['department']=='Commerce')
-                {
-                    echo "selected";
-                } 
-                ?>>Commerce</option>
-            <option value="Psychology"
-            <?php
-                if($row['department']=='Psychology')
-                {
-                    echo "selected";
-                } 
-                ?>>Psychology</option>
-            <option value="Malayalam"
-            <?php
-                if($row['department']=='Malayalam')
-                {
-                    echo "selected";
-                } 
-                ?>>Malayalam</option>
-        </select>
+    <label for="">Reg No</label>
+    <input type="text" name="Regno" value="<?php echo $row['Regno'];?>">
     </div>
     <div>
-        <label for="course">Course</label>
-        <select name="course" id="">
-            <option value="">Select</option>
-            <option value="BCA"
-               <?php
-                if($row['course']=='BCA')
-                {
-                    echo "selected";
-                } 
-                ?>>BCA</option>
-            <option value="BBA"
-            <?php
-                if($row['course']=='BBA')
-                {
-                    echo "selected";
-                } 
-                ?>>BBA</option>
-            <option value="Bsc Computer science"
-            <?php
-                if($row['course']=='Bsc Computer science')
-                {
-                    echo "selected";
-                } 
-                ?>>Bsc Computer science</option>
-            <option value="Bcom Cooperation"
-            <?php
-                if($row['course']=='Bcom Cooperation')
-                {
-                    echo "selected";
-                } 
-                ?>>Bcom Cooperation</option>
-            <option value="Bcom Finance"
-            <?php
-                if($row['course']=='Bcom Finance')
-                {
-                    echo "selected";
-                } 
-                ?>>Bcom Finance</option>
-            <option value="Bsc Psychology"
-            <?php
-                if($row['course']=='Bsc Psychology')
-                {
-                    echo "selected";
-                } 
-                ?>>Bsc Psychology</option>    
+            <label for="department">Department</label>
+            <select name="department" id="">
+            <option value="">Select Department</option>
+         <?php
+         while($r=mysqli_fetch_array($cos)){
+          ?>
+          <option value="<?php echo $r['id'];?>"><?php echo $r['Department_name'];?></option>
+          <?php
+         }
+         ?>   
+        </select>
+     </div>
+     <div>
+        <label for="Course">Course</label>
+        <select name="Course_name" id="">
+         <option value="">Select Course</option>   
+         <?php
+         while($c=mysqli_fetch_array($cod)){
+          ?>
+          <option value="<?php echo $c['id'];?>"><?php echo $c['Course_name'];?></option>
+          <?php
+         }
+         ?>   
         </select>
     </div>
     <div>

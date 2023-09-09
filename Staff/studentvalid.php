@@ -1,6 +1,6 @@
 <?php
 include("../connection.php");
-$nerr=$derr=$cerr=$uerr=$perr=" ";
+$nerr=$derr=$cerr=$uerr=$perr=$gerr=" ";
 if(isset($_POST['Register']))
 {
     $filename=$_FILES['images']['name'];
@@ -17,6 +17,15 @@ if(isset($_POST['Register']))
     else
     {
         $nerr=true;
+    }
+    $Regno=$_POST['Regno'];
+    if($Regno=="")
+    {
+       $gerr="Enter Reg No";
+    }
+    else
+    {
+        $gerr=true;
     }
     $department=$_POST['department'];
     if($department=="")
@@ -72,8 +81,8 @@ if(isset($_POST['Register']))
     {
         $perr=true;
     }
-    if($nerr==1 && $derr==1 && $cerr==1 && $uerr==1 && $perr==1){
-        $query="insert into student_tb(name,department,course,username,password,images)values('$name','$department','$course','$username','$password','$filename')";
+    if($nerr==1 && $gerr==1 && $derr==1 && $cerr==1 && $uerr==1 && $perr==1){
+        $query="insert into student_tb(name,Regno,department,course,username,password,images)values('$name','$Regno','$department','$course','$username','$password','$filename')";
     $res=mysqli_query($con,$query);
     if($res==true)
     {

@@ -25,46 +25,18 @@ $row=mysqli_fetch_array($res);
     <input type="text" name="name" value="<?php echo $row['name'];?>">
     </div>
     <div>
-        <label for="department">Department</label>
-        <select name="department" id="">
-            <option value="">Select</option>
-            <option value="Computer science"
-               <?php
-                if($row['department']=='Computer science')
-                {
-                    echo "selected";
-                } 
-                ?>>Computer Science</option>
-            <option value="English"
-            <?php
-                if($row['department']=='English')
-                {
-                    echo "selected";
-                } 
-                ?>>English</option>
-            <option value="Commerce"
-            <?php
-                if($row['department']=='Commerce')
-                {
-                    echo "selected";
-                } 
-                ?>>Commerce</option>
-            <option value="Psychology"
-            <?php
-                if($row['department']=='Psychology')
-                {
-                    echo "selected";
-                } 
-                ?>>Psychology</option>
-            <option value="Malayalam"
-            <?php
-                if($row['department']=='Malayalam')
-                {
-                    echo "selected";
-                } 
-                ?>>Malayalam</option>
+            <label for="department">Department</label>
+            <select name="department" id="">
+            <option value="">Select Department</option>
+         <?php
+         while($r=mysqli_fetch_array($cos)){
+          ?>
+          <option value="<?php echo $r['id'];?>"><?php echo $r['Department_name'];?></option>
+          <?php
+         }
+         ?>   
         </select>
-    </div>
+     </div>
     <div>
         <label for="username">Username</label>
         <input type="text" name="username" value="<?php echo $row['username'];?>" disabled>
