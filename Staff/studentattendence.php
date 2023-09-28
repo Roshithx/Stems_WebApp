@@ -6,6 +6,9 @@ $cod=mysqli_query($con,$e);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="../js3/jquery-3.6.1.js">
+     
+     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -15,7 +18,7 @@ $cod=mysqli_query($con,$e);
     <form action="subject.php" method="post">
     <div>
             <label for="Course">Course</label>
-        <select name="Course_name" id="">
+        <select name="Course_name" id="co">
          <option value="">Select Course</option>   
          <?php
          while($c=mysqli_fetch_array($cod)){
@@ -27,16 +30,17 @@ $cod=mysqli_query($con,$e);
         </select>
  
             </div>
-        <label for="">Semester</label>
-       <select name="semester" id="">
-          <option value="">Select Semester</option>
-          <option value="Semester 1">Semester 1</option>
-          <option value="Semester 2">Semester 2</option>
-          <option value="Semester 3">Semester 3</option>
-          <option value="Semester 4">Semester 4</option>
-          <option value="Semester 5">Semester 5</option>
-          <option value="Semester 6">Semester 6</option>
+        <label for=""> Select Year</label>
+        <select name="Year" id="yea">
+          <option value="">Select Year</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
        </select>
+       <div>
+       <label for="">Select Date</label>
+       <input type="date" name="date">
+       </div>
     </form>
     <?php
 $con=new mysqli("localhost","root","",'admin_db');
@@ -54,37 +58,11 @@ $res=mysqli_query($con,$q);
 
     </head>
     <body>
-        <table border=3>
-            <thead>
-                <th>Name</th>
-                <th>Course</th> 
-            </thead>
-            <tbody>
-                <?php
-                while($row=mysqli_fetch_array($res))
-                {
-                    ?>
-                    <tr>
-                        <td>
-                            <?php echo $row['name'];?>
-                        </td>
-                        <td>
-                        <?php echo $row['did'];?>
-                        </td>
-                        <td> <?php echo $row['Course_name'];?></td>
-                        <td> <?php echo $row['username'];?></td>
-                        <td> <?php echo $row['password'];?></td>
-                        <td><img src="../Images/<?php echo $row['images'];?>" height="100px" width="100px" alt=""></td>
-                        <td><a href="studentedit.php?id=<?php echo $row['id'];?>">EDIT</a></td>
-                        <td><a href="studentupdate.php?id=<?php echo $row['id'];?>">UPDATE</a></td>
-                        <td><a href="studentdelete.php?id=<?php echo $row['id'];?>">DELETE</a></td>
-
-                    </tr>
-                    <?php
-                }
-                ?>
-            </tbody>
-        </table>
+        <div id="ne">
+            <div id="me">Select Course and Year</div>
+        <input type="button" value="Save" name="save">
+        </div>
+        
     </body>
 </html>
 <?php
@@ -92,3 +70,42 @@ $res=mysqli_query($con,$q);
 ?>
 </body>
 </html>
+<script>
+    $(document).ready(function()
+    {
+        // $('#ta').show();
+
+      $('#yea').change(function(){
+        var yid=$('#yea').val();
+        var cid=$('#co').val();
+        $.ajax({
+             type:'POST',
+             url:'yearselect.php',
+             data:{
+                yid:yid,
+                cid:cid
+            },
+             success : function (data){
+                $('#me').empty();
+              $('#ne').html(data);
+             }
+        });
+      });
+      $('#co').change(function(){
+        var yid=$('#yea').val();
+        var cid=$('#co').val();
+        $.ajax({
+             type:'POST',
+             url:'yearselect.php',
+             data:{cid:cid,
+            yid:yid
+        },
+             success : function (data){
+                alert(data);
+                $('#me').empty();
+              $('#ne').html(data);
+             }
+        });
+      });
+    });
+    </script>

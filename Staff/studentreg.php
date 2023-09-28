@@ -86,6 +86,16 @@ $cod=mysqli_query($con,$e);
     ?>
     </strong>
         </div>
+       <div>
+        <label for=""> Select Year</label>
+       <select name="Year" id="">
+          <option value="">Select Year</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
+       </select>
+       </div>
+       <div>    
         <div>
             <label for="username">Username</label>
             <input type="text" name="username" id="">

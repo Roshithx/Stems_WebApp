@@ -37,13 +37,17 @@ $row=mysqli_fetch_array($res);
             <label for="department">Department</label>
             <select name="department" id="">
             <option value="">Select Department</option>
-         <?php
+            <?php
          while($r=mysqli_fetch_array($cos)){
           ?>
-          <option value="<?php echo $r['id'];?>"><?php echo $r['Department_name'];?></option>
+          <option value="<?php echo $r['id'];?>"
+          <?php
+          if($r['id']==$row['department']){
+           echo "selected";
+          }?>><?php echo $r['Department_name'];?></option>
           <?php
          }
-         ?>   
+         ?> 
         </select>
      </div>
      <div>
@@ -53,7 +57,12 @@ $row=mysqli_fetch_array($res);
          <?php
          while($c=mysqli_fetch_array($cod)){
           ?>
-          <option value="<?php echo $c['id'];?>"><?php echo $c['Course_name'];?></option>
+          <option value="<?php echo $c['id'];?>"
+          <?php
+          if($c['id']==$row['course']){
+           echo "selected";
+          }?>>
+          <?php echo $c['Course_name'];?></option>
           <?php
          }
          ?>   

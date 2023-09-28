@@ -5,7 +5,7 @@ if($con->connect_error)
     die("Connection failed");
 
 }
-$q="select * from staff_tb";
+$q="select *,staff_tb.id as sid from staff_tb inner join department_tb on staff_tb.department=department_tb.id";
 $res=mysqli_query($con,$q);
 
 ?>
@@ -35,15 +35,14 @@ $res=mysqli_query($con,$q);
                             <?php echo $row['name'];?>
                         </td>
                         <td>
-                        <?php echo $row['department'];?>
+                        <?php echo $row['Department_name'];?>
                         </td>
                         <td> <?php echo $row['username'];?></td>
                         <td> <?php echo $row['password'];?></td>
                         <td> <?php echo $row['email'];?></td>
                         <td> <?php echo $row['contact'];?></td>
                         <td><img src="../Images/<?php echo $row['images'];?>" height="100px" width="100px" alt=""></td>
-                        <td><a href="staffedits.php?id=<?php echo $row['id'];?>">EDIT</a></td>
-                        <td><a href="staffupdate.php?id=<?php echo $row['id'];?>">UPDATE</a></td>
+                        <td><a href="staffedits.php?id=<?php echo $row['sid'];?>">EDIT</a></td>
                         <td><a href="staffdelete.php?id=<?php echo $row['id'];?>">DELETE</a></td>
                     </tr>
 

@@ -39,13 +39,20 @@ $row=mysqli_fetch_array($res);
             <label for="department">Department</label>
             <select name="department" id="dep">
             <option value="">Select Department</option>
-         <?php
-         while($r=mysqli_fetch_array($cos)){
-          ?>
-          <option value="<?php echo $r['id'];?>"><?php echo $r['Department_name'];?></option>
-          <?php
-         }
-         ?>   
+            <?php
+             while($r=mysqli_fetch_array($cos)){
+                ?>
+             
+            <option value="<?php echo $r['id'];?>"
+              <?php
+                if($row['department']==$r['id'])
+                {
+                    echo "selected";
+                } 
+                ?>> <?php echo $r['Department_name'];?></option>
+                <?php
+             }
+             ?>
         </select>
      </div>
      <div>
@@ -53,14 +60,46 @@ $row=mysqli_fetch_array($res);
         <select name="Course_name" id="cou">
          <option value="">Select Course</option>   
          <?php
-        //  while($c=mysqli_fetch_array($cod)){
+         while($c=mysqli_fetch_array($cod)){
           ?>
-          <!-- <option value="<?php echo $c['id'];?>"><?php echo $c['Course_name'];?></option> -->
+          <option value="<?php echo $c['id'];?>"
           <?php
-        //  }
+          if($c['id']==$row['course']){
+           echo "selected";
+          }?>><?php echo $c['Course_name'];?></option>
+          <?php
+         }
          ?>   
         </select>
     </div>
+    <div >
+    <label for="">Year</label>
+        <select name="Year" id="">
+            <option value="">Select Year</option>
+            <option value="1st Year"
+               <?php
+                if($row['Year']=='1st Year')
+                {
+                    echo "selected";
+                } 
+                ?>>1st Year</option>
+            <option value="2nd Year"
+            <?php
+                if($row['Year']=='2nd Year')
+                {
+                    echo "selected";
+                } 
+                ?>>2nd Year</option>
+            <option value="3rd Year"
+            <?php
+                if($row['Year']=='3rd Year')
+                {
+                    echo "selected";
+                } 
+                ?>>3rd Year</option>
+          
+       </select>
+       </div>
     <div>
         <label for="username">Username</label>
         <input type="text" name="username" value="<?php echo $row['username'];?>">

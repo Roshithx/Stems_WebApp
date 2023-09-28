@@ -7,6 +7,8 @@ if($con->connect_error)
 }
 session_start();
 $id=$_SESSION['id'];
+$coa="select * from department_tb";
+$cos=mysqli_query($con,$coa);
 $q="select * from staff_tb where id=$id";
 $res=mysqli_query($con,$q);
 $row=mysqli_fetch_array($res);
@@ -28,13 +30,20 @@ $row=mysqli_fetch_array($res);
             <label for="department">Department</label>
             <select name="department" id="">
             <option value="">Select Department</option>
-         <?php
-         while($r=mysqli_fetch_array($cos)){
-          ?>
-          <option value="<?php echo $r['id'];?>"><?php echo $r['Department_name'];?></option>
-          <?php
-         }
-         ?>   
+            <?php
+             while($r=mysqli_fetch_array($cos)){
+                ?>
+             
+            <option value="<?php echo $r['id'];?>"
+               <?php
+                if($row['department']==$r['id'])
+                {
+                    echo "selected";
+                } 
+                ?>><?php echo $r['Department_name'];?></option>
+                <?php
+             }
+             ?>
         </select>
      </div>
     <div>

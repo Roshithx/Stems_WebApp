@@ -47,7 +47,7 @@ $res=mysqli_query($con,$q);
                         <td> <?php echo $row['password'];?></td>
                         <td> <?php echo $row['contact'];?></td>
                         <td><a href="parentedit.php?id=<?php echo $row['pid'];?>">EDIT</a></td>
-
+                        <td><a href="parentdelete.php?id=<?php echo $row['pid'];?>">DELETE</a></td>
 
                     </tr>
                     <?php

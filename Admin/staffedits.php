@@ -6,8 +6,10 @@ if($con->connect_error)
 
 }
 session_start();
-$id=$_SESSION['id'];
-$q="select * from staff_tb where id=$id";
+$id=$_GET['id'];
+$coy="select * from department_tb";
+$cos=mysqli_query($con,$coy);
+$q="SELECT * FROM `staff_tb` INNER JOIN department_tb on staff_tb.department=department_tb.id WHERE staff_tb.id=$id";
 $res=mysqli_query($con,$q);
 $row=mysqli_fetch_array($res);
 ?>
@@ -29,41 +31,21 @@ $row=mysqli_fetch_array($res);
         <label for="department">Department</label>
         <select name="department" id="">
             <option value="">Select</option>
-            <option value="Computer science"
-               <?php
-                if($row['department']=='Computer science')
-                {
-                    echo "selected";
-                } 
-                ?>>Computer Science</option>
-            <option value="English"
             <?php
-                if($row['department']=='English')
+             while($r=mysqli_fetch_array($cos)){
+                ?>
+             
+            <option value="<?php echo $r['id'];?>"
+              <?php
+                if($row['department']==$r['id'])
                 {
                     echo "selected";
                 } 
-                ?>>English</option>
-            <option value="Commerce"
-            <?php
-                if($row['department']=='Commerce')
-                {
-                    echo "selected";
-                } 
-                ?>>Commerce</option>
-            <option value="Psychology"
-            <?php
-                if($row['department']=='Psychology')
-                {
-                    echo "selected";
-                } 
-                ?>>Psychology</option>
-            <option value="Malayalam"
-            <?php
-                if($row['department']=='Malayalam')
-                {
-                    echo "selected";
-                } 
-                ?>>Malayalam</option>
+                ?>> <?php echo $r['Department_name'];?></option>
+                <?php
+             }
+             ?>
+           
         </select>
     </div>
     <div>

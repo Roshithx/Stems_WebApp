@@ -20,6 +20,7 @@ $res=mysqli_query($con,$q);
                 <th>Reg No</th>
                 <th>Department</th>
                 <th>Course</th>
+                <th>Year</th>
                 <th>Username</th>
                 <th>Password</th>
                 <th>Profile</th>
@@ -40,6 +41,7 @@ $res=mysqli_query($con,$q);
                         <?php echo $row['did'];?>
                         </td>
                         <td> <?php echo $row['Course_name'];?></td>
+                        <td><?php echo $row['Year'] ?></td>
                         <td> <?php echo $row['username'];?></td>
                         <td> <?php echo $row['password'];?></td>
                         <td><img src="../Images/<?php echo $row['images'];?>" height="100px" width="100px" alt=""></td>

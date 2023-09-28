@@ -1,6 +1,6 @@
 <?php
 include("../connection.php");
-$nerr=$derr=$cerr=$uerr=$perr=$gerr=" ";
+$nerr=$derr=$cerr=$uerr=$perr=$gerr=$yerr=" ";
 if(isset($_POST['Register']))
 {
     $filename=$_FILES['images']['name'];
@@ -45,6 +45,15 @@ if(isset($_POST['Register']))
     {
         $cerr=true;
     }
+    $Year=$_POST['Year'];
+    if($Year=="")
+    {
+       $yerr="Select a Year";
+    }
+    else
+    {
+        $yerr=true;
+    }
     $username=$_POST['username'];
     $as="select * from staff_tb where username='$username'";
     $cons=mysqli_query($con,$as);
@@ -81,8 +90,8 @@ if(isset($_POST['Register']))
     {
         $perr=true;
     }
-    if($nerr==1 && $gerr==1 && $derr==1 && $cerr==1 && $uerr==1 && $perr==1){
-        $query="insert into student_tb(name,Regno,department,course,username,password,images)values('$name','$Regno','$department','$course','$username','$password','$filename')";
+    if($nerr==1 && $gerr==1 && $derr==1 && $cerr==1 && $uerr==1 && $perr==1 && $yerr==1){
+        $query="insert into student_tb(name,Regno,department,course,Year,username,password,images)values('$name','$Regno','$department','$course','$Year','$username','$password','$filename')";
     $res=mysqli_query($con,$query);
     if($res==true)
     {
