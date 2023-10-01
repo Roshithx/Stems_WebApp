@@ -2,10 +2,15 @@
 include('../connection.php');
 $coa=isset($_POST['yid'])?$_POST['yid']:"";
 $yoa=isset($_POST['cid'])?$_POST['cid']:"";
-$e="select * from student_tb inner join course_tb on student_tb.course=course_tb.id where Year='$coa' and course='$yoa'";
+$e="select *,student_tb.id as sid from student_tb inner join course_tb on student_tb.course=course_tb.id where Year='$coa' and course='$yoa'";
 $cos=mysqli_query($con,$e);
 if(mysqli_num_rows($cos)>0){
 ?>
+<html>
+   <body>
+      <form action="attendancecheck.php" method="post">
+      <input type="hidden" name="course" value="<?php echo $yoa;?>">
+      <input type="hidden" name="Year" value="<?php echo $coa;?>">
    <table border=3 id="ta">
    <thead>
  <tr>
@@ -31,16 +36,30 @@ while($r=mysqli_fetch_array($cos)){
     <td><?php echo $r['name'];?></td>
     <td><?php echo $r['Regno'];?></td>
     <td><?php echo $r['Course_name'];?></td>
+    <td><input type="checkbox" name="p1[]" id="" value="<?php echo $r['sid'];?>"></td>
+    <td><input type="checkbox" name="p2[]" id="" value="<?php echo $r['sid'];?>"></td>
+    <td><input type="checkbox" name="p3[]" id="" value="<?php echo $r['sid'];?>"></td>
+    <td><input type="checkbox" name="p4[]" id="" value="<?php echo $r['sid'];?>"></td>
+    <td><input type="checkbox" name="p5[]" id="" value="<?php echo $r['sid'];?>"></td>
    </tr>
    <?php 
 }
 ?>
+ <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><input type="submit" value="Add" name="period1"></td>
+    <td><input type="submit" value="Add" name="period2"></td>
+    <td><input type="submit" value="Add" name="period3"></td>
+    <td><input type="submit" value="Add" name="period4"></td>
+    <td><input type="submit" value="Add" name="period5"></td>
+    <tr>
 </tbody>
+</table>
+</form>
+   </body>
+</html>
 <?php
-}
-else{
-   ?>
-   <h3>Select Year</h3>
-   <?php
 }
 ?>

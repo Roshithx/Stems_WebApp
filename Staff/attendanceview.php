@@ -14,7 +14,7 @@ $cod=mysqli_query($con,$e);
     <title>Document</title>
 </head>
 <body>
-    <h1>Attendence management</h1>
+    <h1>Attendence List </h1>
     <form action="attendancecheck.php" method="post">
     <div>
             <label for="Course">Course</label>
@@ -39,7 +39,7 @@ $cod=mysqli_query($con,$e);
        </select>
        <div>
        <label for="">Select Date</label>
-       <input type="date" name="date"max="<?php echo date('Y-m-d');?>" required>
+       <input type="date" name="date"max="<?php echo date('Y-m-d');?>" required id="dt">
        </div>
        <?php
 $con=new mysqli("localhost","root","",'admin_db');
@@ -62,7 +62,6 @@ $res=mysqli_query($con,$q);
         <input type="button" value="Save" name="save">
         </div>
     </form>
-   <a href="attendanceview.php">Attendance List</a>
         
     </body>
 </html>
@@ -74,6 +73,7 @@ $res=mysqli_query($con,$q);
 <script>
     $(document).ready(function()
     {
+        
         // $('#ta').show();
 
       $('#yea').change(function(){
@@ -81,7 +81,7 @@ $res=mysqli_query($con,$q);
         var cid=$('#co').val();
         $.ajax({
              type:'POST',
-             url:'yearselect.php',
+             url:'attendanceviews.php',
              data:{
                 yid:yid,
                 cid:cid
@@ -97,9 +97,25 @@ $res=mysqli_query($con,$q);
         var cid=$('#co').val();
         $.ajax({
              type:'POST',
-             url:'yearselect.php',
+             url:'attendanceviews.php',
              data:{cid:cid,
             yid:yid
+        },
+             success : function (data){
+                $('#me').empty();
+              $('#ne').html(data);
+             }
+        });
+      });
+    $('#dt').change(function(){
+        var yid=$('#yea').val();
+        var cid=$('#co').val();
+        var dt =$('#dt').val();
+        $.ajax({
+             type:'POST',
+             url:'attendanceviews.php',
+             data:{cid:cid,
+            yid:yid,date:dt,
         },
              success : function (data){
                 $('#me').empty();
